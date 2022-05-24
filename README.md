@@ -1,2 +1,4 @@
-# tienda-online
-Trabajo de la asignatura de Informática I
+# tienda Online
+Trabajo de la asignatura de Informática I.
+
+

@@ -1,0 +1,17 @@
+version: "3"
+services:
+  db:
+    image: postgres:13
+    restart: always
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=docker
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+    - db:/var/lib/postgresql/data
+    ports:
+    - "5439:5432"
+volumes:
+  db:
+    driver: local
