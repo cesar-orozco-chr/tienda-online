@@ -12,6 +12,35 @@ services:
     - db:/var/lib/postgresql/data
     ports:
     - "5439:5432"
+
+  create:
+    build: ./create
+    environment:
+      - SQLALCHEMY_DATABASE_URI=postgresql://docker:docker@db/docker
+    depends_on:
+      - db
+
+  delete:
+    build: ./delete
+    environment:
+      - SQLALCHEMY_DATABASE_URI=postgresql://docker:docker@db/docker
+    depends_on:
+      - db
+
+  read:
+    build: ./read
+    environment:
+      - SQLALCHEMY_DATABASE_URI=postgresql://docker:docker@db/docker
+    depends_on:
+      - db
+
+  update:
+    build: ./update
+    environment:
+      - SQLALCHEMY_DATABASE_URI=postgresql://docker:docker@db/docker
+    depends_on:
+      - db
+
 volumes:
   db:
     driver: local
