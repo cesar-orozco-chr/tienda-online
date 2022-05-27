@@ -5,19 +5,20 @@ db = get_sql_alchemy()
 
 
 class Product(db.Model):
-    __tablename__ = 'Products'
+    __tablename__ = "product"
 
-    productId = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(25))
-    price = db.Column(db.Integer)
-    state = db.Column(db.String(25))
-    created_at = db.Column(db.DateTime, default=datetime.now())
+    productid = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(25), nullable=False)
+    price = db.Float()
+    state = db.Column(db.String(10), default="activo")
+    created_at = db.Column(db.Date, default=datetime.now())
 
-    def __init__(self, productId, name, price, state):
-        self.productId = productId
+    def __init__(self, productid, name, price, state):
+        self.productid = productid
         self.name = name
         self.price = price
         self.state = state
 
-    def __str__(self) -> str:
-        return "<Product %r>" % self.name
+    def __str__(self):
+        return f"Product : " \
+               f"{self.name}"

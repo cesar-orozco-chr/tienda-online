@@ -5,19 +5,21 @@ db = get_sql_alchemy()
 
 
 class Purchase(db.Model):
-    __tablename__ = 'Purchases'
+    __tablename__ = "purchase"
 
-    purchaseId = db.Column(db.Integer, primary_key=True)
-    shippingState = db.Column(db.String(25))
-    productId = db.Column(db.Integer)
-    clientId = db.Column(db.Integer)
-    created_at = db.Column(db.DateTime, default=datetime.now())
+    purchaseid = db.Column(db.Integer, primary_key=True)
+    shipping_state = db.Column(db.String(25))
+    productid = db.Column(db.Integer, db.ForeignKey('product.productid'))
+    product = db.relationship('Product', backref=db.backref('purchase', lazy=True))
+    clientid = db.Column(db.Integer, db.ForeignKey('client.clientid'))
+    client = db.relationship('Client', backref=db.backref('purchase', lazy=True))
+    created_at = db.Column(db.Date, default=datetime.now())
 
-    def __init__(self, purchaseId, shippingState, productId, clientId):
-        self.purchaseId = purchaseId
-        self.shippingState = shippingState
-        self.productId = productId
-        self.clientId = clientId
+    def __init__(self, purchaseid, shipping, productid, clientid):
+        self.purchaseid = purchaseid
+        self.shipping_state = shipping
+        self.productid = productid
+        self.clientid = clientid
 
-    def __str__(self) -> str:
-        return "<Purchase Id: %r State: %r>" % self.purchaseId % self.shippingState
+    def __str__(self):
+        pass
