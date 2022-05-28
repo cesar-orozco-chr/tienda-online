@@ -1,12 +1,12 @@
 from flask import Flask, jsonify
-from connection.connection import get_sql_alchemy
+from connection import create_app, db
 from model.product import Product
 from model.client import Client
 from model.purchase import Purchase
 
-app = Flask(__name__)
+app = create_app()
 
-db = get_sql_alchemy()
+
 
 
 @app.route('/product/list', methods=['GET'])

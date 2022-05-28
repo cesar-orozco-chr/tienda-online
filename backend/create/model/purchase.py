@@ -1,7 +1,5 @@
 from datetime import datetime
-from backend.create.connection.connection import get_sql_alchemy
-
-db = get_sql_alchemy()
+from connection import db
 
 
 class Purchase(db.Model):
@@ -15,8 +13,7 @@ class Purchase(db.Model):
     client = db.relationship('Client', backref=db.backref('purchase', lazy=True))
     created_at = db.Column(db.Date, default=datetime.now())
 
-    def __init__(self, purchaseid, shipping, productid, clientid):
-        self.purchaseid = purchaseid
+    def __init__(self, shipping, productid, clientid):
         self.shipping_state = shipping
         self.productid = productid
         self.clientid = clientid

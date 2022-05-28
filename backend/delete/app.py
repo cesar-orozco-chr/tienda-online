@@ -1,12 +1,10 @@
-from flask import Flask, request
-from connection.connection import get_sql_alchemy
+from flask import  request
+from connection import db, create_app
 from model.product import Product
 from model.client import Client
 from model.purchase import Purchase
 
-app = Flask(__name__)
-
-db = get_sql_alchemy()
+app = create_app()
 
 
 @app.route('/product/delete/<int:id>', methods=['POST'])
