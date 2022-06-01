@@ -11,11 +11,10 @@ class Product(db.Model):
     state = db.Column(db.String(10), default="activo")
     created_at = db.Column(db.Date, default=datetime.now())
 
-    def __init__(self, productid, name, price, state):
+    def __init__(self, productid, name, price):
         self.productid = productid
         self.name = name
         self.price = price
-        self.state = state
 
     def __str__(self):
         return f"Product : " \
