@@ -1,5 +1,5 @@
-#backend.delete
-from flask import  request
+# backend.delete
+from flask import request
 from connection import db, create_app
 from model.product import Product
 from model.client import Client
@@ -12,9 +12,8 @@ app = create_app()
 def delete_product(id):
     if request.method == 'POST':
         p = Product.query.get(id)
-        if p is not None and p.state != "inactivo":
-            p.state = "inactivo"
-            db.session.add(p)
+        if p is not None:
+            db.session.delete(p)
             db.session.commit()
             return "Producto Borrado!", 200
         else:
