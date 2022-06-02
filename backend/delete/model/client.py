@@ -1,5 +1,7 @@
+#backend.delete.model
 from datetime import datetime
 from connection import db
+
 
 class Client(db.Model):
     __tablename__ = "client"

@@ -15,7 +15,7 @@ class TestApp(unittest.TestCase):
         db.create_all()
 
     def test_product_create(self):
-        p = Product(11, 'Medias', 3000, 'activo')
+        p = Product(11, 'Medias', 3000)
         db.session.add(p)
         db.session.commit()
         self.assertIsNotNone(Product.query.filter(Product.productid == 11).first())

@@ -14,7 +14,7 @@ class TestApp(unittest.TestCase):
         db.create_all()
 
     def test_product_delete(self):
-        p = Product(11, 'Medias', 3000, 'activo')
+        p = Product(11, 'Medias', 3000)
         db.session.add(p)
         db.session.commit()
         d = Product.query.get(11)
