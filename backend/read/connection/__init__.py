@@ -5,8 +5,8 @@ import os
 db = SQLAlchemy()
 
 
-def create_app():
-    app = Flask(__name__)
+def create_app(template_folder):
+    app = Flask(__name__, template_folder=template_folder)
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
     db.init_app(app)
     return app

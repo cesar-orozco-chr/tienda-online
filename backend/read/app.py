@@ -1,22 +1,20 @@
-from flask import Flask, jsonify
-from connection import create_app, db
+from flask import jsonify, render_template, url_for
+from connection import create_app
 from model.product import Product
 from model.client import Client
 from model.purchase import Purchase
 
-app = create_app()
-
-
+app = create_app('templates')
 
 
 @app.route('/product/list', methods=['GET'])
 def list_products():
-    q = Product.query.filter_by(deleted=False).all()
-    '''CREAR JSON PARA EL MODELO PRODUCTO - COMPLEMENTARLO'''
-    return jsonify([{'id': p.id, 'sku': p.sku, 'name': p.name} for p in q])
+    q = Product.query.all()
+    # return jsonify([{'id': p.id, 'sku': p.sku, 'name': p.name} for p in q])
+    l = [{'id': p.id, 'sku': p.sku, 'name': p.name} for p in q]
+    # l = [i for i in range(5)]
+    return render_template('product.html', products=l)
 
-
-'''INSTANCIAR CREATES RESTANTES CLIENTS Y PURCHASE'''
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5001, debug=True)

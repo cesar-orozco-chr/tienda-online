@@ -1,5 +1,15 @@
-version: "3"
-services:
+version: '3'
+
+services: 
+  nginx:
+    image: nginx
+    ports:
+      - 8080:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    links:
+      - create
+
   db:
     image: postgres:13
     restart: always
@@ -10,32 +20,40 @@ services:
       - POSTGRES_HOST_AUTH_METHOD=trust
     volumes:
     - db:/var/lib/postgresql/data
-    ports:
-    - "5439:5432"
+    #ports:
+    #- 5437:5432
+
 
   create:
-    build: ./backend/create
-    environment:
-      - SQLALCHEMY_DATABASE_URI=postgresql://docker:docker@db/docker
-    depends_on:
-      - db
-
-  delete:
-    build: ./backend/delete
+    build: ./create
     environment:
       - SQLALCHEMY_DATABASE_URI=postgresql://docker:docker@db/docker
     depends_on:
       - db
 
   read:
-    build: ./backend/read
+    build: ./read
     environment:
       - SQLALCHEMY_DATABASE_URI=postgresql://docker:docker@db/docker
     depends_on:
       - db
 
   update:
-    build: ./backend/update
+    build: ./update
+    environment:
+      - SQLALCHEMY_DATABASE_URI=postgresql://docker:docker@db/docker
+    depends_on:
+      - db
+  
+  delete:
+    build: ./delete
+    environment:
+      - SQLALCHEMY_DATABASE_URI=postgresql://docker:docker@db/docker
+    depends_on:
+      - db
+  
+  store:
+    build: ./store
     environment:
       - SQLALCHEMY_DATABASE_URI=postgresql://docker:docker@db/docker
     depends_on:
