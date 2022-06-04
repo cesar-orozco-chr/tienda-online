@@ -2,6 +2,8 @@ from connection import db, create_app
 from model.product import Product
 from model.client import Client
 from model.purchase import Purchase
+from werkzeug.test import Client
+from werkzeug.testapp import test_app
 
 import unittest
 import os
@@ -19,6 +21,7 @@ class TestApp(unittest.TestCase):
         db.session.add(p)
         db.session.commit()
         self.assertIsNotNone(Product.query.all())
+
 
     def test_client_list(self):
         c = Client(10, "Arturo Reyes")
