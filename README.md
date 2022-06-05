@@ -46,8 +46,22 @@
 ```
 docker-compose ps
 ```
-- ejecutar en un git bash (recomendado) el archivo bash "start-proyect.sh"
+
+En entorno Windows
+- ejecutar en un git bash (recomendado) el archivo bash "start-project.sh"
 - para detener la ejecucion, ejecutar el archivo "stop-proyect.sh"
+
+En entorno Linux/MacOs
+
+Inciar el proyecto
+```
+bash start-project.sh
+```
+Eliminar los contenedores
+
+```
+bash stop-project.sh
+```
 
 ### **Instrucciones para utilizar la tienda online**
 
