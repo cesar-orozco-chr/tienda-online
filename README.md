@@ -1,4 +1,4 @@
-# **tienda Online**
+# **Tienda Online**
 ##**Trabajo de la asignatura de Informática I.**
 
 ##**Realizado por**:
